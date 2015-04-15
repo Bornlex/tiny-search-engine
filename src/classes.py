@@ -99,4 +99,15 @@ class Searcher:
                 return index
 
         def search(index, word):
-                for 
+                for li in index:
+                        if li == word:
+                                return li
+
+        def serach(index, liste):
+                result = []
+                for word in liste:
+                        for li in index:
+                                if li == word:
+                                        result.append(li)
+                return result
+
