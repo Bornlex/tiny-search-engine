@@ -2,6 +2,7 @@
 # -*-coding:Utf-8 -*
 
 import functions as F
+import classes as C
 import sys
 import argparse
 
@@ -64,13 +65,21 @@ def main():
 		print("--------------------------------------------------------------------------------")
 	#F.print_contenu_tokenized_documents(tokenized)
 	index = F.build(tokenized)
-	answer = raw_input("Do you want to save the index on disk ? (y/n)")
+	answer = raw_input("Do you want to save the index on disk ? (y/n) ")
 	if answer == "y":
 		F.save(index, "./")
 		print("Index saved.")
 	else:
 		print("Index not saved.")
+        
+        print("Entrez les requetes que vous voulez effectuer :")
+
+        while True:
+                requete = raw_input("\t>> ")
+                searcher = C.Searcher()
+                index = searcher.load("./")
+                result = searcher.search(index, requete)
+                print("Voici les résultats de la recherche : ")
+                print(result)
 
 main()
-
-

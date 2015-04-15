@@ -3,6 +3,7 @@
 
 import unicodedata
 import re
+import pickle
 
 class Document:
 	def __init__(self, text, url):
@@ -87,27 +88,23 @@ class Index:
 	def __init__(self, wordToUrls):
 		self.wordToUrls = wordToUrls
 
+        def getUrls(self):
+                return self.wordToUrls
+
 
 class Searcher:
         def __init__(self):
+                pass
 
-        def load(path):
+        def load(self, path):
                 index = ""
                 path = path + "index.pickle"
                 with open(path, 'rb') as f:
                         index = pickle.load(f)
                 return index
 
-        def search(index, word):
-                for li in index:
+        def search(self, index, word):
+                for li in index.getUrls():
                         if li == word:
                                 return li
-
-        def serach(index, liste):
-                result = []
-                for word in liste:
-                        for li in index:
-                                if li == word:
-                                        result.append(li)
-                return result
 
