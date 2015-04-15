@@ -87,3 +87,16 @@ class Index:
 	def __init__(self, wordToUrls):
 		self.wordToUrls = wordToUrls
 
+
+class Searcher:
+        def __init__(self):
+
+        def load(path):
+                index = ""
+                path = path + "index.pickle"
+                with open(path, 'rb') as f:
+                        index = pickle.load(f)
+                return index
+
+        def search(index, word):
+                for 

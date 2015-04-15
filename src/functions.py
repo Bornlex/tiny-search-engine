@@ -119,12 +119,3 @@ def save(index, path):
 	#sérialization
 	with open('index.pickle', 'wb') as f:
 		pickle.dump(index, f)
-
-def load():
-	index = ""
-	with open('index.pickle', 'rb') as f:
-		index = pickle.load(f)
-	return index
-
-
-
