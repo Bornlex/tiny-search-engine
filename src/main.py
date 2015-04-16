@@ -80,6 +80,10 @@ def main():
                 index = searcher.load("./")
                 result = searcher.search(index, requete)
                 print("Voici les résultats de la recherche : ")
-                print(result)
+              	if result is None:
+              		print("\tAucun résultat ne correspond à la recherche.")
+              	else:
+                	for doc in result:
+                		print("\t- " + doc)
 
 main()

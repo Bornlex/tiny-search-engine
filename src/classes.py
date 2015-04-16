@@ -89,22 +89,23 @@ class Index:
 		self.wordToUrls = wordToUrls
 
         def getUrls(self):
-                return self.wordToUrls
+            return self.wordToUrls
 
 
 class Searcher:
         def __init__(self):
-                pass
+            pass
 
         def load(self, path):
-                index = ""
-                path = path + "index.pickle"
-                with open(path, 'rb') as f:
-                        index = pickle.load(f)
-                return index
+            index = ""
+            path = path + "index.pickle"
+            with open(path, 'rb') as f:
+                index = pickle.load(f)
+            return index
 
         def search(self, index, word):
-                for li in index.getUrls():
-                        if li == word:
-                                return li
+        	urls = index.getUrls()
+		for li in index.getUrls():
+			if li == word:
+				return urls[li]
 
