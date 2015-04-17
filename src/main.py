@@ -5,6 +5,8 @@ import functions as F
 import classes as C
 import sys
 import argparse
+import operator
+import os
 
 g_verbose = False
 
@@ -65,25 +67,37 @@ def main():
 		print("--------------------------------------------------------------------------------")
 	#F.print_contenu_tokenized_documents(tokenized)
 	index = F.build(tokenized)
-	answer = raw_input("Do you want to save the index on disk ? (y/n) ")
+	saved = 0
+	answer = raw_input("Voulez-vous sauvegarder l'index sur le disque ? (y/n) ")
 	if answer == "y":
 		F.save(index, "./")
-		print("Index saved.")
+		print("Index sauvegardé.")
+		saved = 1
 	else:
-		print("Index not saved.")
+		print("Index non sauvegardé.")
         
-        print("Entrez les requetes que vous voulez effectuer :")
-
+        print("Entrez les requetes que vous voulez effectuer (les résultats sont triés par pertinence):")
+        print("Indiquez 'stop!' pour arrêter la recherche")
         while True:
                 requete = raw_input("\t>> ")
+                if requete == "stop!":
+                	break
                 searcher = C.Searcher()
-                index = searcher.load("./")
+                if saved == 1:
+                	index = searcher.load("./")
                 result = searcher.search(index, requete)
                 print("Voici les résultats de la recherche : ")
               	if result is None:
               		print("\tAucun résultat ne correspond à la recherche.")
               	else:
-                	for doc in result:
-                		print("\t- " + doc)
+              		final = {}
+              		for doc in result:
+              			if doc in final:
+              				final[doc] += 1
+              			else:
+              				final[doc] = 1
+              		dico = sorted(final.items(), key=operator.itemgetter(1))
+                	for i in range(0, len(dico)):
+                		print("\t- " + dico[len(dico) - 1 - i][0] + " (" + str(dico[len(dico) - 1 - i][1]) + ")")
 
 main()
