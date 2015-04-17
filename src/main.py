@@ -80,14 +80,17 @@ def main():
 			print("Index non sauvegardé.")
         
 	searcher = C.Searcher()
-	print("Existe-t-il un index.pickle (src/index.pickle) ? (y/n)")
-	ans = raw_input(">> ")
-	if ans == "y":
-		index = searcher.load("./")
-	else:
-		print("Il n'existe pas d'index et vous n'en avez pas chargez un, la recherche est impossible. Le programme va quitter.")
-		return
+	if saved == 0:
+		print("Existe-t-il un index.pickle (src/index.pickle) ? (y/n)")
+		ans = raw_input(">> ")
+		if ans == "y":
+			print("Chargement de l'index...")
+			index = searcher.load("./")
+		else:
+			print("Il n'existe pas d'index et vous n'en avez pas chargez un, la recherche est impossible. Le programme va quitter.")
+			return
 	if saved == 1:
+		print("Chargement de l'index...")
 		index = searcher.load("./") #l'index soit se trouver dans le dossier src, se nommer index.pickle
 	print("Entrez les requetes que vous voulez effectuer (les résultats sont triés par pertinence):")
 	print("Indiquez 'stop!' pour arrêter la recherche")
