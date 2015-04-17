@@ -53,7 +53,7 @@ class Normalizer(TextProcessor):
 
 	def process(self, word):
 		result = ""
-		temp = unicode(word, 'Utf-8')
+		temp = unicode(word, 'latin-1')
 		result = unicodedata.normalize('NFD', temp).encode('ascii', 'ignore')
 		result = re.sub('[^a-zA-Z0-9]', '', result)
 		return result.lower()
@@ -71,7 +71,7 @@ class GenderRemover(TextProcessor):
 			result = "ton"
 		return result
 
-#on va dire que si le mot appartient à la liste de mots inutiles (dans config.py), on l'enlève
+#si le mot appartient à la liste de mots inutiles (dans config.py), on l'enlève
 """class UselessRemover(TextProcessor):
 	def __init__(self, proc_type):
 		TextProcessor.__init__(self, proc_type)

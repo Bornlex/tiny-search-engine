@@ -22,13 +22,14 @@ def remove_slash(arg):
 
 #verification de l'extension
 def check_extension(fichier):
-	extensions_valides = ['txt', 'md'];
+	"""extensions_valides = ['txt', 'md'];
 	tab = fichier.split(".");
 	extension = tab[1];
 	for ext in extensions_valides:
 		if extension == ext or extension == ext.upper():
 			return True
-	return False
+	return False"""
+	return True
 
 #on affiche simplement les chemins des documents de la liste
 def print_url_documents(documents):
