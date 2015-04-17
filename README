@@ -3,4 +3,9 @@ README -
 Les fichiers de la base de test doivent se trouver dans un
 dossier test situé juste sous src (src/test/base/de/test).
 
+Pour lancer le programme : ./main.py
+
+La première fois, le programme est lent, du fait de la compilation des
+fichiers python (création des fichier.pyc).
+
 Bonne recherche !
