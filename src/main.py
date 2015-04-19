@@ -96,15 +96,16 @@ def main():
 	print("Indiquez 'stop!' pour arrêter la recherche")
 	while True:
 		requete = raw_input("\t>> ")
+		requete_split = requete.split(' ', 1)
 		if requete == "stop!":
 			break
-		result = searcher.search(index, requete)
+		results = searcher.search(index, requete_split)
 		print("Voici les résultats de la recherche : ")
-		if result is None:
+		if not results:
           		print("\tAucun résultat ne correspond à la recherche.")
           	else:
           		final = {}
-          		for doc in result:
+          		for doc in results:
           			if doc in final:
           				final[doc] += 1
           			else:

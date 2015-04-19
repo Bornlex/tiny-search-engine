@@ -4,6 +4,7 @@
 import unicodedata
 import re
 import pickle
+import itertools
 
 class Document:
 	def __init__(self, text, url):
@@ -105,7 +106,17 @@ class Searcher:
 
         def search(self, index, word):
         	urls = index.getUrls()
-		for li in index.getUrls():
-			if li == word:
-				return urls[li]
-
+        	if isinstance(word, basestring):
+			for li in urls:
+			       	if li == word:
+				       	return urls[li]
+		else:
+			results = []
+			for w in word:
+				for li in urls:
+					if li == w:
+						results.append(urls[li])
+			final = []
+			for element in results:
+				final += element
+			return final

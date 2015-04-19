@@ -1,6 +1,2 @@
 
-- Ecrire la deuxième fonction de recherche
 - Prendre en compte les interruptions clavier
-- Faire en sorte que si le mot recherché se trouve plusieurs fois dans le même résultat,
-  ce résultat s'affiche suivi du nombre d'occurrences entre parenthèses
-- Classer les résultats en fonctions du nombre d'occurrences
